@@ -85,7 +85,7 @@
 
 <img src="assets/images/wallpaper.png" alt="Wallpaper">
 
-Along with the development of the "Back to Nature" trend, people are starting to turn to herbal medicine or traditional medicine derived from nature. One of the truths of dry simplicia powder of medicinal plants can be determined through a microscopic test by looking at the identification fragments. Therefore, the researchers proposed research as an innovative step through the application of technology to identify microscopic fragments of dried leaf simplicia and names of medicinal plant species.
+Along with the development of the "Back to Nature" trend, people are starting to turn to herbal medicine or traditional medicine derived from nature. One of the truths of dry simplicia powder of medicinal plants can be determined through a microscopic test by looking at the identification fragments. Therefore, we proposed this research as an innovative step through the application of technology to identify microscopic fragments of dried leaf simplicia and names of medicinal plant species.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
