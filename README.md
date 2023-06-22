@@ -119,7 +119,7 @@ This is an example of how to list things you need to use the software and how to
 1. Get Python 3.8.13 at [https://www.python.org/downloads/](https://www.python.org/downloads/)
 2. Clone the repo
    ```sh
-   git clone https://github.com/github_username/repo_name.git
+   git clone https://github.com/RickyIG/SimpliScopeX.git
    ```
 3. Install Python packages
    ```sh
@@ -153,7 +153,7 @@ streamlit run main.py
 - [x] Quiz
 - [x] Deep Learning Model
 
-See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/RickyIG/SimpliScopeX/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
