@@ -37,7 +37,7 @@
 <h3 align="center">SimpliScopeX</h3>
 
   <p align="center">
-    An Improved Deep Learning Model for Microscopic Image Identification of Leaf Simplicia Fragments of Medicinal Plants
+    An Improved Deep Learning Model for Microscopic Image Identification of<br />Leaf Simplicia Fragments of Medicinal Plants
     <br />
     <a href="https://github.com/RickyIG/SimpliScopeX"><strong>Explore the docs »</strong></a>
     <br />
