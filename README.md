@@ -116,7 +116,7 @@ This is an example of how to list things you need to use the software and how to
 
 ### Installation
 
-1. Get Python 3.8.13 at [https://www.python.org/downloads/](https://www.python.org/downloads/)
+1. Get **Python 3.8.13** at [https://www.python.org/downloads/](https://www.python.org/downloads/)
 2. Clone the repo
    ```sh
    git clone https://github.com/RickyIG/SimpliScopeX.git
