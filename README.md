@@ -129,8 +129,8 @@ This is an example of how to list things you need to use the software and how to
    ```sh
    pip install -r /path/to/requirements_lite.txt
    ```
-Note : 
-requirements_lite = Minimum list of requirements (Required to install)
+Note : <br/>
+requirements_lite = Minimum list of requirements (Required to install) <br/>
 requirements = Full list of requirements (Need to install if you're not using Python 3.8.13)
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
