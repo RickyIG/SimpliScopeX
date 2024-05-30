@@ -64,7 +64,8 @@ def predicting(image):
     axarr[0].set_title('Original Image')
 
     # image = tf.image.decode_jpeg(image, channels=3)
-    print(image)
+    st.write(image)
+    st.write(type(image))
     img = tf.image.rgb_to_grayscale(image)
     # st.write(img.shape)
     img = center_crop(img, (480,480))
