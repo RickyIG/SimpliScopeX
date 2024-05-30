@@ -73,10 +73,8 @@ def predicting(image):
     
     # # Decode the JPEG byte stream using TensorFlow
     # image_tensor = tf.image.decode_jpeg(jpeg_bytes, channels=3)
-    # st.write(image)
-    # st.write(type(image))
-    st.write("Image shape: ", image.shape)
-    st.write("Image dtype: ", image.dtype)
+    st.write(image)
+    st.write(type(image))
     img = tf.image.rgb_to_grayscale(image)
     # st.write(img.shape)
     img = center_crop(img, (480,480))
