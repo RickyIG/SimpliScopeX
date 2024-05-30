@@ -75,6 +75,8 @@ def predicting(image):
     # image_tensor = tf.image.decode_jpeg(jpeg_bytes, channels=3)
     # st.write(image)
     # st.write(type(image))
+    st.write("Image shape: ", str(image.shape))
+    st.write("Image dtype: ", str(image.dtype))
     img = tf.image.rgb_to_grayscale(image)
     # st.write(img.shape)
     img = center_crop(img, (480,480))
