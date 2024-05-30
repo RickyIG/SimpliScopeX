@@ -76,6 +76,23 @@ def predicting(image):
     st.write(image)
     st.write(type(image))
     st.write(image.size)
+
+    # Convert the PIL image to a NumPy array
+    image_np = np.array(image)
+        
+    # If the image is grayscale (single channel), expand dimensions to add a channel dimension
+    if image_np.ndim == 2:  # Grayscale image
+        image_np = np.expand_dims(image_np, axis=-1)
+        image_np = np.repeat(image_np, 3, axis=-1)  # Repeat the grayscale values across 3 channels
+
+    # Convert the NumPy array to a TensorFlow tensor
+    image_tensor = tf.convert_to_tensor(image_np, dtype=tf.float32)
+
+    # Check the shape and type of the tensor
+    print(f"Image tensor shape: {image_tensor.shape}")
+    print(f"Image tensor dtype: {image_tensor.dtype}")
+
+    image = image_tensor
     img = tf.image.rgb_to_grayscale(image)
     # st.write(img.shape)
     img = center_crop(img, (480,480))
