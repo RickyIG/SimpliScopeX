@@ -49,137 +49,141 @@ def center_crop(img, dim):
 
 
 def predicting(image):
-    classifier_model = "./model/final_simpliscopex_model.h5"
-      
-    model = load_model(classifier_model)
-
-    # img = tf.keras.utils.load_img(image)
-    plt.figure()
-    plt.rcParams["figure.autolayout"] = True
-    f, axarr = plt.subplots(1,2, figsize=(12, 8))
-    plt.subplots_adjust(left=0.1,
-                        right=0.2,
-                        wspace=0.4)
-    axarr[0].imshow(image)
-    axarr[0].set_title('Original Image')
-
-    # # image = tf.image.decode_jpeg(image, channels=3)
-    # image_input = image_input.convert('RGB')
+    try:
+        classifier_model = "./model/final_simpliscopex_model.h5"
+          
+        model = load_model(classifier_model)
     
-    # # Convert the PIL image to a byte stream encoded as JPEG
-    # byte_io = io.BytesIO()
-    # image_input.save(byte_io, format='JPEG')
-    # jpeg_bytes = byte_io.getvalue()
+        # img = tf.keras.utils.load_img(image)
+        plt.figure()
+        plt.rcParams["figure.autolayout"] = True
+        f, axarr = plt.subplots(1,2, figsize=(12, 8))
+        plt.subplots_adjust(left=0.1,
+                            right=0.2,
+                            wspace=0.4)
+        axarr[0].imshow(image)
+        axarr[0].set_title('Original Image')
     
-    # # Decode the JPEG byte stream using TensorFlow
-    # image_tensor = tf.image.decode_jpeg(jpeg_bytes, channels=3)
-    st.write(image)
-    st.write(type(image))
-    st.write(image.size)
-
-    # Convert the PIL image to a NumPy array
-    image_np = np.array(image)
+        # # image = tf.image.decode_jpeg(image, channels=3)
+        # image_input = image_input.convert('RGB')
         
-    # If the image is grayscale (single channel), expand dimensions to add a channel dimension
-    if image_np.ndim == 2:  # Grayscale image
-        image_np = np.expand_dims(image_np, axis=-1)
-        image_np = np.repeat(image_np, 3, axis=-1)  # Repeat the grayscale values across 3 channels
-
-    # Convert the NumPy array to a TensorFlow tensor
-    image_tensor = tf.convert_to_tensor(image_np, dtype=tf.float32)
-
-    # Check the shape and type of the tensor
-    print(f"Image tensor shape: {image_tensor.shape}")
-    print(f"Image tensor dtype: {image_tensor.dtype}")
-
-    image = image_tensor
-    img = tf.image.rgb_to_grayscale(image)
-    # st.write(img.shape)
-    img = center_crop(img, (480,480))
-    img2 = tf.image.resize(img, (224, 224))
-
-    # st.image(img2, caption='Processed Image')
-    axarr[1].imshow(img2, cmap='gray')
-    axarr[1].set_title('Processed Image')
-    f.patch.set_visible(False)
-    st.pyplot(f)
+        # # Convert the PIL image to a byte stream encoded as JPEG
+        # byte_io = io.BytesIO()
+        # image_input.save(byte_io, format='JPEG')
+        # jpeg_bytes = byte_io.getvalue()
+        
+        # # Decode the JPEG byte stream using TensorFlow
+        # image_tensor = tf.image.decode_jpeg(jpeg_bytes, channels=3)
+        st.write(image)
+        st.write(type(image))
+        st.write(image.size)
     
-    x = tf.keras.utils.img_to_array(img2)
-    x = np.expand_dims(x, axis=0)
-      
-    # test_image = image.resize((224,224))
-    # test_image = preprocessing.image.img_to_array(test_image)
-    # test_image = test_image / 255.0
-    # test_image = np.expand_dims(test_image, axis=0)
-    images = np.vstack([x])
+        # Convert the PIL image to a NumPy array
+        image_np = np.array(image)
+            
+        # If the image is grayscale (single channel), expand dimensions to add a channel dimension
+        if image_np.ndim == 2:  # Grayscale image
+            image_np = np.expand_dims(image_np, axis=-1)
+            image_np = np.repeat(image_np, 3, axis=-1)  # Repeat the grayscale values across 3 channels
     
-    # classes = load_model.predict(images, batch_size=32) 
-    class_names = {0: 'katuk-bp',
-                    1: 'katuk-ea_dg_palisade',
-                    2: 'katuk-ea_dg_stomata',
-                    3: 'katuk-eb',
-                    4: 'katuk-parenkim_d_kko_b_roset',
-                    5: 'keji_beling-bp',
-                    6: 'keji_beling-ea',
-                    7: 'keji_beling-ea_dg_litosit_d_stomata',
-                    8: 'keji_beling-rp',
-                    9: 'keji_beling-sistolit',
-                    10: 'kelor-bp_t_tangga',
-                    11: 'kelor-eb_dg_stomata',
-                    12: 'kelor-kko_b_roset',
-                    13: 'kelor-m_bp_dg_pt_tangga_d_kko_b_roset',
-                    14: 'kelor-m_dg_selsekresi',
-                    15: 'pegagan-bp',
-                    16: 'pegagan-ea',
-                    17: 'pegagan-eb_dg_stomata',
-                    18: 'pegagan-mesofil',
-                    19: 'pegagan-uratdaun_dg_kko_b_roset',
-                    20: 'salam-ea',
-                    21: 'salam-eb_dg_stomata',
-                    22: 'salam-kko_b_prisma',
-                    23: 'salam-sklerenkim',
-                    24: 'salam-unsurxilem_dg_noktah',
-                    25: 'sereh-e_dg_parenkim',
-                    26: 'sereh-ea_d_bp_dg_p_t_tangga',
-                    27: 'sereh-ea_dg_selpalisade_d_rp',
-                    28: 'sereh-ea_dg_stomata_b_halter',
-                    29: 'sereh-sklerenkim'}
-    labels = ['katuk-bp',
-                    'katuk-ea_dg_palisade',
-                    'katuk-ea_dg_stomata',
-                    'katuk-eb',
-                    'katuk-parenkim_d_kko_b_roset',
-                    'keji_beling-bp',
-                    'keji_beling-ea',
-                    'keji_beling-ea_dg_litosit_d_stomata',
-                    'keji_beling-rp',
-                    'keji_beling-sistolit',
-                    'kelor-bp_t_tangga',
-                    'kelor-eb_dg_stomata',
-                    'kelor-kko_b_roset',
-                    'kelor-m_bp_dg_pt_tangga_d_kko_b_roset',
-                    'kelor-m_dg_selsekresi',
-                    'pegagan-bp',
-                    'pegagan-ea',
-                    'pegagan-eb_dg_stomata',
-                    'pegagan-mesofil',
-                    'pegagan-uratdaun_dg_kko_b_roset',
-                    'salam-ea',
-                    'salam-eb_dg_stomata',
-                    'salam-kko_b_prisma',
-                    'salam-sklerenkim',
-                    'salam-unsurxilem_dg_noktah',
-                    'sereh-e_dg_parenkim',
-                    'sereh-ea_d_bp_dg_p_t_tangga',
-                    'sereh-ea_dg_selpalisade_d_rp',
-                    'sereh-ea_dg_stomata_b_halter',
-                    'sereh-sklerenkim']
-    predictions = model.predict(images, batch_size=32)
-    # scores = tf.nn.softmax(predictions[0])
-    # scores = scores.numpy()
-    # result = f"{class_names[np.argmax(scores)]} with a { (100 * np.max(scores)).round(2) } % confidence."
-    # st.write(str(predictions)) 
-    result = f"{labels[np.argmax(predictions)]}, {np.max(predictions)}"
+        # Convert the NumPy array to a TensorFlow tensor
+        image_tensor = tf.convert_to_tensor(image_np, dtype=tf.float32)
+    
+        # Check the shape and type of the tensor
+        print(f"Image tensor shape: {image_tensor.shape}")
+        print(f"Image tensor dtype: {image_tensor.dtype}")
+    
+        image = image_tensor
+        img = tf.image.rgb_to_grayscale(image)
+        # st.write(img.shape)
+        img = center_crop(img, (480,480))
+        img2 = tf.image.resize(img, (224, 224))
+    
+        # st.image(img2, caption='Processed Image')
+        axarr[1].imshow(img2, cmap='gray')
+        axarr[1].set_title('Processed Image')
+        f.patch.set_visible(False)
+        st.pyplot(f)
+        
+        x = tf.keras.utils.img_to_array(img2)
+        x = np.expand_dims(x, axis=0)
+          
+        # test_image = image.resize((224,224))
+        # test_image = preprocessing.image.img_to_array(test_image)
+        # test_image = test_image / 255.0
+        # test_image = np.expand_dims(test_image, axis=0)
+        images = np.vstack([x])
+        
+        # classes = load_model.predict(images, batch_size=32) 
+        class_names = {0: 'katuk-bp',
+                        1: 'katuk-ea_dg_palisade',
+                        2: 'katuk-ea_dg_stomata',
+                        3: 'katuk-eb',
+                        4: 'katuk-parenkim_d_kko_b_roset',
+                        5: 'keji_beling-bp',
+                        6: 'keji_beling-ea',
+                        7: 'keji_beling-ea_dg_litosit_d_stomata',
+                        8: 'keji_beling-rp',
+                        9: 'keji_beling-sistolit',
+                        10: 'kelor-bp_t_tangga',
+                        11: 'kelor-eb_dg_stomata',
+                        12: 'kelor-kko_b_roset',
+                        13: 'kelor-m_bp_dg_pt_tangga_d_kko_b_roset',
+                        14: 'kelor-m_dg_selsekresi',
+                        15: 'pegagan-bp',
+                        16: 'pegagan-ea',
+                        17: 'pegagan-eb_dg_stomata',
+                        18: 'pegagan-mesofil',
+                        19: 'pegagan-uratdaun_dg_kko_b_roset',
+                        20: 'salam-ea',
+                        21: 'salam-eb_dg_stomata',
+                        22: 'salam-kko_b_prisma',
+                        23: 'salam-sklerenkim',
+                        24: 'salam-unsurxilem_dg_noktah',
+                        25: 'sereh-e_dg_parenkim',
+                        26: 'sereh-ea_d_bp_dg_p_t_tangga',
+                        27: 'sereh-ea_dg_selpalisade_d_rp',
+                        28: 'sereh-ea_dg_stomata_b_halter',
+                        29: 'sereh-sklerenkim'}
+        labels = ['katuk-bp',
+                        'katuk-ea_dg_palisade',
+                        'katuk-ea_dg_stomata',
+                        'katuk-eb',
+                        'katuk-parenkim_d_kko_b_roset',
+                        'keji_beling-bp',
+                        'keji_beling-ea',
+                        'keji_beling-ea_dg_litosit_d_stomata',
+                        'keji_beling-rp',
+                        'keji_beling-sistolit',
+                        'kelor-bp_t_tangga',
+                        'kelor-eb_dg_stomata',
+                        'kelor-kko_b_roset',
+                        'kelor-m_bp_dg_pt_tangga_d_kko_b_roset',
+                        'kelor-m_dg_selsekresi',
+                        'pegagan-bp',
+                        'pegagan-ea',
+                        'pegagan-eb_dg_stomata',
+                        'pegagan-mesofil',
+                        'pegagan-uratdaun_dg_kko_b_roset',
+                        'salam-ea',
+                        'salam-eb_dg_stomata',
+                        'salam-kko_b_prisma',
+                        'salam-sklerenkim',
+                        'salam-unsurxilem_dg_noktah',
+                        'sereh-e_dg_parenkim',
+                        'sereh-ea_d_bp_dg_p_t_tangga',
+                        'sereh-ea_dg_selpalisade_d_rp',
+                        'sereh-ea_dg_stomata_b_halter',
+                        'sereh-sklerenkim']
+        predictions = model.predict(images, batch_size=32)
+        # scores = tf.nn.softmax(predictions[0])
+        # scores = scores.numpy()
+        # result = f"{class_names[np.argmax(scores)]} with a { (100 * np.max(scores)).round(2) } % confidence."
+        # st.write(str(predictions)) 
+        result = f"{labels[np.argmax(predictions)]}, {np.max(predictions)}"
+    except BrokenPipeError as e:
+        st.error(f"BrokenPipeError: {e}")
+        raise
     return result
 
 
