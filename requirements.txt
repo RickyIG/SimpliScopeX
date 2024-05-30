@@ -10,3 +10,4 @@ seaborn==0.11.2
 streamlit==1.23.1
 tensorflow==2.9.0
 protobuf==3.20.*
+opencv-python-headless
