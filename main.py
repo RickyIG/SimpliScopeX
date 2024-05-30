@@ -64,9 +64,7 @@ def predicting(image):
     axarr[0].set_title('Original Image')
 
     # image = tf.image.decode_jpeg(image, channels=3)
-    # Ensure the image is in RGB mode
-    if image_input.mode != 'RGB':
-        image_input = image_input.convert('RGB')
+    image_input = image_input.convert('RGB')
     
     # Convert the PIL image to a byte stream encoded as JPEG
     byte_io = io.BytesIO()
